@@ -17,8 +17,8 @@ function App() {
             <Route path="/create">
               <Create />
             </Route>
-            <Route path="/blogs">
-              <BlogDetails />
+            <Route path="/blogs/:id">
+              element = {<BlogDetails />}
             </Route>
           </Switch>
         </div>
