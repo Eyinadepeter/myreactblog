@@ -9,7 +9,7 @@ const useFetch = (url) => {
     const abortCont = new AbortController();
 
     setTimeout(() => {
-      fetch(url, { signal: abortCont.signal })
+      fetch(url)
       .then(res => {
         if (!res.ok) { // error coming back from server
           throw Error('could not fetch the data for that resource');
@@ -22,14 +22,12 @@ const useFetch = (url) => {
         setError(null);
       })
       .catch(err => {
-        if (err.name === 'AbortError') {
-          console.log('fetch aborted')
-        } else {
+       
           // auto catches network / connection error
           setIsPending(false);
           setError(err.message);
         }
-      })
+      )
     }, 1000);
 
     // abort the fetch
