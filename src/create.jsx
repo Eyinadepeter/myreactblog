@@ -1,15 +1,29 @@
 import { useState } from "react";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const Create = () => {
 const [title, setTitle] = useState("")
 const [body , setBody] = useState("")
 const [author, setAuthor] = useState("")
+const [ispending,setPending] = useState(false)
+const History = useHistory()
 
 const handleSubmit =(e)=>{
   e.preventDefault()
-  
 
-}
+  const blog={title,body,author};
+  setPending(true)
+
+setTimeout(() =>{
+    fetch ("http://localhost:8000/blogs",{
+    method:"POST",
+    headers:{"Content-Type" : "application/json"},
+    body:JSON.stringify(blog)
+}).then(() => {
+    console.log("new blog Added")
+    setPending(false)
+    History.push(/);
+})},1000)}
 
     return (
         <div className="create">
@@ -30,7 +44,8 @@ const handleSubmit =(e)=>{
                     <option>Yoshau</option>
                     
                 </select>
-                 <button>Add Blog</button>
+                {!ispending && <button>Add Blog</button>}
+                {ispending && <button disabled>Adding blog ....</button>}
                  <div>
                     <p>{title}</p>
                    <p>{author}</p>
