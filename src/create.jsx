@@ -7,8 +7,12 @@ const [author, setAuthor] = useState("")
 
 const handleSubmit =(e)=>{
   e.preventDefault()
-  
-  
+  fetch ("http://localhost:8000/blogs") {
+    method:"POST",
+     headers: { "Content-Type"; "application/json" },
+    body:
+  }
+
 }
 
     return (

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 const useFetch = (url) => {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState("http://localhost:8000/blogs");
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState(null);
 
