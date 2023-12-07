@@ -1,18 +1,20 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
+
 const Create = () => {
 const [title, setTitle] = useState("")
 const [body , setBody] = useState("")
 const [author, setAuthor] = useState("")
 const [ispending,setPending] = useState(false)
-const History = useHistory()
+const history = useHistory()
+
 
 const handleSubmit =(e)=>{
-  e.preventDefault()
-
-  const blog={title,body,author};
-  setPending(true)
+    e.preventDefault()
+    
+    const blog={title,body,author};
+    setPending(true)
 
 setTimeout(() =>{
     fetch ("http://localhost:8000/blogs",{
@@ -22,16 +24,18 @@ setTimeout(() =>{
 }).then(() => {
     console.log("new blog Added")
     setPending(false)
-    History.push(/);
+    history.push("/home")
+    
 })},1000)}
 
-    return (
-        <div className="create">
+return (
+    <div className="create">
             <h1>Add A New Blog</h1>
             <form onSubmit={handleSubmit}>
                 <label>Blog Title:</label>
                 <input type="text" required value={title} 
                 onChange={(e) =>setTitle(e.target.value)}/>
+                
                
                 <label>Blog Body</label>
                 <input type="textarea" required
